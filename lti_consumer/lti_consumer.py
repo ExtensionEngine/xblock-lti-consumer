@@ -421,6 +421,12 @@ class LtiConsumerXBlock(StudioEditableXBlockMixin, XBlock):
         default=False,
         scope=Scope.settings
     )
+    grades_published = Boolean(
+        display_name='Display grade to students',
+        help='Indicates if the grades will be displayed to students.',
+        default=False,
+        scope=Scope.user_state_summary
+    )
 
     # Possible editable fields
     editable_field_names = (
@@ -887,6 +893,7 @@ class LtiConsumerXBlock(StudioEditableXBlockMixin, XBlock):
             'modal_horizontal_offset': self._get_modal_position_offset(self.modal_width),
             'modal_width': self.modal_width,
             'accept_grades_past_due': self.accept_grades_past_due,
+            'grades_published': self.grades_published
         }
 
     def _get_modal_position_offset(self, viewport_percentage):
